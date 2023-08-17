@@ -29,6 +29,7 @@ namespace Business.Concrete
         public IResult Delete(int id)
         {
             var deletedService = _serviceDal.Get(x=>x.ServiceID== id);
+            _serviceDal.Delete(deletedService);
             return new SuccessResult($"Deleted Data : {id} number's {Messages.ServiceDeleted}");
         }
 
@@ -40,8 +41,8 @@ namespace Business.Concrete
 
         public IDataResult<Service> GetById(int id)
         {
-            var GetByIdService = _serviceDal.Get(x => x.ServiceID == id);
-            return new SuccessDataResult<Service>(GetByIdService, Messages.ServiceGetById);
+            var getByIdService = _serviceDal.Get(x => x.ServiceID == id);
+            return new SuccessDataResult<Service>(getByIdService, Messages.ServiceGetById);
         }
 
         public IResult Update(Service service)
